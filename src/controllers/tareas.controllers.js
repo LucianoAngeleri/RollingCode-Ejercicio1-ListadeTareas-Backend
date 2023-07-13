@@ -11,6 +11,17 @@ export const obtenerTareas = async (req, res) => {
     });
   }
 };
+export const obtenerTarea = async (req, res) => {
+  try {
+    const tarea = await Tarea.findById(req.params.id);
+    res.status(201).json(tarea);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      mensaje: "Error, no se encontró la tarea",
+    });
+  }
+};
 
 export const crearTarea = async (req, res) => {
   try {
