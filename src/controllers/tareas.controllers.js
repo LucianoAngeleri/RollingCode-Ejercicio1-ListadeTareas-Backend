@@ -1,7 +1,15 @@
 import Tarea from "../models/tarea";
 
-export const obtenerTareas = (req, res) => {
-  res.send("Se hizo la peticion GET");
+export const obtenerTareas = async (req, res) => {
+  try {
+    const tareas = await Tarea.find();
+    res.status(201).json(tareas);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      mensaje: "Error al buscar la lista de tareas",
+    });
+  }
 };
 
 export const crearTarea = async (req, res) => {
