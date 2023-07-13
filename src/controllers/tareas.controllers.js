@@ -37,3 +37,16 @@ export const crearTarea = async (req, res) => {
     });
   }
 };
+export const borrarTarea = async (req, res) => {
+  try {
+    await Tarea.findByIdAndDelete(req.params.id)
+    res.status(200).json({
+      mensaje: "La tarea se borró correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      mensaje: "Error al borrar la tarea",
+    });
+  }
+};
